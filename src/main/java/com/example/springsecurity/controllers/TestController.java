@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 06.09.2020
  */
 @RestController
-@RequestMapping("/test")
-class TestController {
+@RequestMapping(TestController.TEST_PATH)
+public class TestController {
 
-    public static final String SUFFIX_EMAIL_ADMIN_COM = "%s@admin.com";
-    public static final String MSG_TEST_ENDPOINT = "Test endpoint for %s";
+    private static final String SUFFIX_EMAIL_ADMIN_COM = "%s@admin.com";
+    private static final String MSG_TEST_ENDPOINT = "Test endpoint for %s";
+    private static final String CONTACTS_EMAIL_URL_PATH = "/contacts/email";
+    public static final String TEST_PATH = "/test";
 
     @GetMapping
     String test() {
@@ -24,7 +26,7 @@ class TestController {
         return String.format(MSG_TEST_ENDPOINT, username);
     }
 
-    @GetMapping("/contacts/email")
+    @GetMapping(value = CONTACTS_EMAIL_URL_PATH)
     String emailContact(Authentication authentication) {//alternative way to get name from security context
         return String.format(SUFFIX_EMAIL_ADMIN_COM, authentication.getName());
     }
