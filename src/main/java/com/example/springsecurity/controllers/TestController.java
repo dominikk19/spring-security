@@ -1,5 +1,6 @@
 package com.example.springsecurity.controllers;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ class TestController {
 
     @GetMapping
     String test(){
-        return "Test endpoint";
+        var userame= SecurityContextHolder.getContext().getAuthentication().getName();
+        return String.format("Test endpoint for %s", userame);
     }
 }

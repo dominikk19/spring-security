@@ -12,6 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private static final String MSG_UNAUTHENTICATED = "Unauthenticated";
+    private static final String WWW_AUTHENTICATE = "WWW-Authenticate";
+    private static final String BASIC = "Basic";
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -20,7 +24,13 @@ class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                             .anyRequest()
                             .authenticated();
                 })
-                .formLogin();
+                .httpBasic(httpBasic -> {
+                    httpBasic.authenticationEntryPoint((request, response, authenticationException) -> {
+                        response.setStatus(401);
+                        response.setHeader(WWW_AUTHENTICATE, BASIC);
+                        response.getWriter().println(MSG_UNAUTHENTICATED);
+                    });
+                });
 
     }
 }
