@@ -1,4 +1,4 @@
-package com.example.springsecurity.domain;
+package com.example.springsecurity.domain.usecases.pizza;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

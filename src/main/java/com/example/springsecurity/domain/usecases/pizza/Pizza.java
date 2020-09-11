@@ -1,4 +1,4 @@
-package com.example.springsecurity.domain;
+package com.example.springsecurity.domain.usecases.pizza;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
