@@ -5,8 +5,6 @@ import lombok.extern.log4j.Log4j2;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project spring-security
@@ -15,22 +13,25 @@ import static java.util.Objects.requireNonNull;
 @Log4j2
 public class InMemoryPizzaRepository implements SpringPizzaRepository {
 
-    private static String NEW_PIZZA_IS_SAVED_WITH_ID = "New Pizza is saved with id: s%";
+    private static final String OBJECT_CAN_N0T_BE_NULL = "Object cann't be null";
+    private static String NEW_PIZZA_IS_SAVED_WITH_ID = "New Pizza is saved with id: %s";
     private ConcurrentHashMap<Long, PizzaData> map = new ConcurrentHashMap<>();
 
     @Override
-    public PizzaData save(PizzaData pizza) {
-        requireNonNull(pizza);
-        Long id = pizza.getId();
-        if (id == null) {
-            id = map.size() + 1L;
-            pizza.setId(id);
-            map.put(id, pizza);
-            log.info(String.format(NEW_PIZZA_IS_SAVED_WITH_ID, id));
-        } else {
-            map.put(pizza.getId(), pizza);
-        }
-        return map.get(id);
+    public PizzaData save(PizzaData pizzaData) {
+        return Optional.ofNullable(pizzaData)
+                .map(pizza -> {
+                    Optional.ofNullable(pizza.getId())
+                            .ifPresentOrElse(id -> map.put(id, pizza),
+                                    () -> {
+                                        var newId = map.size() + 1L;
+                                        pizza.setId(newId);
+                                        map.put(newId, pizza);
+                                        log.info(String.format(NEW_PIZZA_IS_SAVED_WITH_ID, newId));
+                                    });
+                    return pizza;
+                })
+                .orElseThrow(() -> new IllegalArgumentException(OBJECT_CAN_N0T_BE_NULL));
     }
 
     @Override
