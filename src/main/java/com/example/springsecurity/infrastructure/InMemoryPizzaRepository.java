@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Log4j2
 public class InMemoryPizzaRepository implements SpringPizzaRepository {
 
-    private static final String OBJECT_CAN_N0T_BE_NULL = "Object cann't be null";
+    private static final String OBJECT_CAN_N0T_BE_NULL = "Object can't be null";
     private static String NEW_PIZZA_IS_SAVED_WITH_ID = "New Pizza is saved with id: %s";
     private ConcurrentHashMap<Long, PizzaData> map = new ConcurrentHashMap<>();
 
