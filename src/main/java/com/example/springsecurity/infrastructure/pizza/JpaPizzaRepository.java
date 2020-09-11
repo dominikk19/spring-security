@@ -1,7 +1,7 @@
-package com.example.springsecurity.infrastructure;
+package com.example.springsecurity.infrastructure.pizza;
 
-import com.example.springsecurity.domain.Pizza;
-import com.example.springsecurity.domain.PizzaRepository;
+import com.example.springsecurity.domain.usecases.pizza.Pizza;
+import com.example.springsecurity.domain.usecases.pizza.PizzaRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;

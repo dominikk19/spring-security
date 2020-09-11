@@ -1,4 +1,4 @@
-package com.example.springsecurity.infrastructure;
+package com.example.springsecurity.infrastructure.pizza;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
