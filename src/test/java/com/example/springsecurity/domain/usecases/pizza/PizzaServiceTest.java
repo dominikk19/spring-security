@@ -1,4 +1,4 @@
-package com.example.springsecurity.domain;
+package com.example.springsecurity.domain.usecases.pizza;
 
 import com.example.springsecurity.config.PizzaConfiguration;
 import org.junit.jupiter.api.DisplayName;
@@ -20,8 +20,8 @@ class PizzaServiceTest {
 
     @Test
     @DisplayName("given new Pizza" +
-                 "when save " +
-                 "then return saved Pizza with id"
+            "when save " +
+            "then return saved Pizza with id"
     )
     void saveNewPizza() {
         var pizzaName = "Margerita";

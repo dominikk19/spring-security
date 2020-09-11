@@ -1,11 +1,13 @@
 package com.example.springsecurity.config;
 
-import com.example.springsecurity.domain.PizzaRepository;
-import com.example.springsecurity.domain.PizzaService;
-import com.example.springsecurity.domain.PizzaServiceImpl;
-import com.example.springsecurity.infrastructure.InMemoryPizzaRepository;
-import com.example.springsecurity.infrastructure.JpaPizzaRepository;
-import com.example.springsecurity.infrastructure.SpringPizzaRepository;
+import com.example.springsecurity.domain.usecases.pizza.PizzaRepository;
+import com.example.springsecurity.domain.usecases.pizza.PizzaService;
+import com.example.springsecurity.domain.usecases.pizza.PizzaServiceImpl;
+import com.example.springsecurity.domain.usecases.user.UserRepository;
+import com.example.springsecurity.infrastructure.pizza.InMemoryPizzaRepository;
+import com.example.springsecurity.infrastructure.pizza.JpaPizzaRepository;
+import com.example.springsecurity.infrastructure.pizza.SpringPizzaRepository;
+import com.example.springsecurity.infrastructure.user.UserRepositoryInMemory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -35,6 +37,11 @@ public class PizzaConfiguration {
     @Bean
     SpringPizzaRepository springPizzaRepository(){
         return new InMemoryPizzaRepository();
+    }
+
+    @Bean
+    UserRepository userRepository(){
+        return new UserRepositoryInMemory();
     }
 
 }

@@ -1,7 +1,7 @@
 package com.example.springsecurity.controllers;
 
-import com.example.springsecurity.domain.Pizza;
-import com.example.springsecurity.domain.PizzaService;
+import com.example.springsecurity.domain.usecases.pizza.Pizza;
+import com.example.springsecurity.domain.usecases.pizza.PizzaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
